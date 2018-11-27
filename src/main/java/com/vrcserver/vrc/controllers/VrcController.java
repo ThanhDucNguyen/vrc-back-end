@@ -41,7 +41,7 @@ public class VrcController {
         User user = vrcService.checkUserName(userDTO);
         if (user == null){
             vrcService.register(userDTO);
-            return new Response<>(true, userDTO, "Successful Login");
+            return new Response<>(true, userDTO, "Successful Register");
         }
         else {
             return new Response<>(false, null, " User not exits");
