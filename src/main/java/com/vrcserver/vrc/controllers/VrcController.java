@@ -3,10 +3,7 @@ package com.vrcserver.vrc.controllers;
 import com.vrcserver.vrc.dao.models.TypeCar;
 import com.vrcserver.vrc.dao.models.User;
 import com.vrcserver.vrc.dao.repositories.UserRepository;
-import com.vrcserver.vrc.dto.BookingDTO;
-import com.vrcserver.vrc.dto.CarDTO;
-import com.vrcserver.vrc.dto.SearchDTO;
-import com.vrcserver.vrc.dto.UserDTO;
+import com.vrcserver.vrc.dto.*;
 import com.vrcserver.vrc.dto.response.Response;
 import com.vrcserver.vrc.services.VrcService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +45,8 @@ public class VrcController {
         }
     }
     @GetMapping(value = "/listTypeCar")
-    public Response<List<TypeCar>> listTypeCar(){
-        List<TypeCar> typeCarDTOList = vrcService.listTypeCar();
+    public Response<List<TypeCarDTO>> listTypeCar(){
+        List<TypeCarDTO> typeCarDTOList = vrcService.listTypeCar();
         return new Response<>(true,typeCarDTOList,"List Successful");
     }
     @PostMapping(value = "/listCar/{id}")

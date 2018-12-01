@@ -2,10 +2,7 @@ package com.vrcserver.vrc.services;
 
 import com.vrcserver.vrc.dao.models.TypeCar;
 import com.vrcserver.vrc.dao.models.User;
-import com.vrcserver.vrc.dto.BookingDTO;
-import com.vrcserver.vrc.dto.CarDTO;
-import com.vrcserver.vrc.dto.SearchDTO;
-import com.vrcserver.vrc.dto.UserDTO;
+import com.vrcserver.vrc.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +11,7 @@ import java.util.List;
 public interface VrcService {
     UserDTO login(UserDTO userDTO);
 
-    List<TypeCar> listTypeCar();
+    List<TypeCarDTO> listTypeCar();
 
     List<CarDTO> listCar(Long id);
 

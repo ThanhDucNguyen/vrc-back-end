@@ -67,8 +67,18 @@ public class VrcServiceImpl implements VrcService {
     }
 
     @Override
-    public List<TypeCar> listTypeCar() {
-        return typeCarRepository.findAll();
+    public List<TypeCarDTO> listTypeCar() {
+        List<TypeCarDTO> typeCarDTOS = new ArrayList<>();
+        List<TypeCar> typeCars = typeCarRepository.findAll();
+        for (TypeCar typeCar : typeCars){
+            TypeCarDTO typeCarDTO = new TypeCarDTO();
+            typeCarDTO.setId(typeCar.getId());
+            typeCarDTO.setName(typeCar.getName());
+
+            typeCarDTOS.add(typeCarDTO);
+        }
+
+        return typeCarDTOS;
     }
 
     @Override
