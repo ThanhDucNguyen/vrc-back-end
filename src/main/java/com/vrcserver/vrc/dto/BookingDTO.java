@@ -1,4 +1,5 @@
 package com.vrcserver.vrc.dto;
+
 import com.vrcserver.vrc.dao.models.Car;
 import com.vrcserver.vrc.dao.models.User;
 
@@ -14,8 +15,8 @@ public class BookingDTO {
     private Integer price;
     private Date rentalDay;
     private Date returnDay;
-    private Car car;
-    private User user;
+    private CarDTO car;
+    private UserDTO user;
 
     @Override
     public String toString() {
@@ -31,7 +32,7 @@ public class BookingDTO {
                 '}';
     }
 
-    public Car getCar() {
+    public CarDTO getCar() {
         return car;
     }
 
@@ -43,15 +44,15 @@ public class BookingDTO {
         this.date = date;
     }
 
-    public void setCar(Car car) {
+    public void setCar(CarDTO car) {
         this.car = car;
     }
 
-    public User getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO user) {
         this.user = user;
     }
 

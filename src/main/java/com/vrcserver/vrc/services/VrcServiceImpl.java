@@ -31,7 +31,7 @@ public class VrcServiceImpl implements VrcService {
     private CarRepository carRepository;
     private BookingRepository bookingRepository;
 
-    public VrcServiceImpl(UserRepository userRepository,TypeCarRepository typeCarRepository,CarRepository carRepository,BookingRepository bookingRepository) {
+    public VrcServiceImpl(UserRepository userRepository, TypeCarRepository typeCarRepository, CarRepository carRepository, BookingRepository bookingRepository) {
         this.userRepository = userRepository;
         this.typeCarRepository = typeCarRepository;
         this.carRepository = carRepository;
@@ -70,7 +70,7 @@ public class VrcServiceImpl implements VrcService {
     public List<TypeCarDTO> listTypeCar() {
         List<TypeCarDTO> typeCarDTOS = new ArrayList<>();
         List<TypeCar> typeCars = typeCarRepository.findAll();
-        for (TypeCar typeCar : typeCars){
+        for (TypeCar typeCar : typeCars) {
             TypeCarDTO typeCarDTO = new TypeCarDTO();
             typeCarDTO.setId(typeCar.getId());
             typeCarDTO.setName(typeCar.getName());
@@ -85,7 +85,7 @@ public class VrcServiceImpl implements VrcService {
     public List<CarDTO> listCar(Long id) {
         List<CarDTO> carDTOArrayList = new ArrayList<>();
         Optional<TypeCar> typeCarOptional = typeCarRepository.findById(id);
-        for (Car car : typeCarOptional.get().getCars()){
+        for (Car car : typeCarOptional.get().getCars()) {
             CarDTO carDTO = new CarDTO();
             carDTO.setId(car.getId());
             carDTO.setPrice(car.getPrice());
@@ -112,9 +112,9 @@ public class VrcServiceImpl implements VrcService {
 //        String b = searchDTO.getTypeCar();
 //        String c = searchDTO.getModel();
 //        String d = searchDTO.getYearCar();
-        List<Car> cars = carRepository.getCar(searchDTO.getTypeCar(),searchDTO.getYearCar(),searchDTO.getModel(),searchDTO.getName());
+        List<Car> cars = carRepository.getCar(searchDTO.getTypeCar(), searchDTO.getYearCar(), searchDTO.getModel(), searchDTO.getName());
         List<CarDTO> carDTOS = new ArrayList<>();
-        for (Car car:cars){
+        for (Car car : cars) {
             CarDTO carDTO = new CarDTO();
             carDTO.setId(car.getId());
             carDTO.setModel(car.getModel());
@@ -154,10 +154,10 @@ public class VrcServiceImpl implements VrcService {
         }
         Optional<Car> carOptional = carRepository.findById(bookingDTO.getCar().getId());
         Car car;
-        if (carOptional.isPresent()){
+        if (carOptional.isPresent()) {
             Car getCar = carOptional.get();
             car = carRepository.save(getCar);
-        }else {
+        } else {
             return;
         }
         booking.setUser(user);
@@ -172,13 +172,13 @@ public class VrcServiceImpl implements VrcService {
             helper.setText("\nHi: " + saveBooking.getUser().getUserName() +
                     "\nPhone: " + saveBooking.getUser().getUserPhone() +
                     "\nEmail: " + saveBooking.getUser().getUserPhone() +
-                    "\nYou have successfully rented a car"+
-                    "\nManufacturer Car: "+saveBooking.getCar().getTypeCar().getName()+
-                    "\nModel Car: "+saveBooking.getCar().getModel()+
-                    "\nYear Car: "+saveBooking.getCar().getYearCar()+
-                    "\nType Car: "+saveBooking.getCar().getType()+
-                    "\nRental Day: "+saveBooking.getRentalDay()+
-                    " ---> Return Day: "+saveBooking.getReturnDay()+
+                    "\nYou have successfully rented a car" +
+                    "\nManufacturer Car: " + saveBooking.getCar().getTypeCar().getName() +
+                    "\nModel Car: " + saveBooking.getCar().getModel() +
+                    "\nYear Car: " + saveBooking.getCar().getYearCar() +
+                    "\nType Car: " + saveBooking.getCar().getType() +
+                    "\nRental Day: " + saveBooking.getRentalDay() +
+                    " ---> Return Day: " + saveBooking.getReturnDay() +
                     "\nPrice: " + saveBooking.getPrice() +
                     "\nPay: " + saveBooking.getPay() +
                     "\n-------------------------------------------" +
