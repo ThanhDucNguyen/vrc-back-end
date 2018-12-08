@@ -40,6 +40,7 @@ public class AdminServiceImpl implements AdminService {
         List<TypeCar> typeCars = typeCarRepository.findAll();
         for (TypeCar typeCar : typeCars) {
             TypeCarDTO typeCarDTO = new TypeCarDTO();
+            typeCarDTO.setId(typeCar.getId());
             typeCarDTO.setName(typeCar.getName());
 
             typeCarDTOS.add(typeCarDTO);
@@ -53,6 +54,7 @@ public class AdminServiceImpl implements AdminService {
         List<Car> cars = carRepository.findAll();
         for (Car car : cars) {
             CarDTO carDTO = new CarDTO();
+            carDTO.setId(car.getId());
             carDTO.setModel(car.getModel());
             carDTO.setType(car.getType());
             carDTO.setYearCar(car.getYearCar());
@@ -73,10 +75,11 @@ public class AdminServiceImpl implements AdminService {
         List<CarOwner> carOwners = carOwnerRepository.findAll();
         for (CarOwner carOwner : carOwners) {
             CarOwnerDTO carOwnerDTO = new CarOwnerDTO();
+            carOwnerDTO.setId(carOwner.getId());
             carOwnerDTO.setOwnerName(carOwner.getOwnerName());
             carOwnerDTO.setOwnerEmail(carOwner.getOwnerEmail());
             carOwnerDTO.setOwnerPhone(carOwner.getOwnerPhone());
-            carOwnerDTO.setOwnerPhone(carOwner.getOwnerPhone());
+            carOwnerDTO.setOwnerAddress(carOwner.getOwnerAddress());
 
             carOwnerDTOS.add(carOwnerDTO);
         }
@@ -89,6 +92,7 @@ public class AdminServiceImpl implements AdminService {
         List<Booking> bookings = bookingRepository.findAll();
         for (Booking booking : bookings) {
             BookingDTO bookingDTO = new BookingDTO();
+            bookingDTO.setId(booking.getId());
             bookingDTO.setDate(booking.getBookingDate());
             bookingDTO.setPay(booking.getPay());
             bookingDTO.setPrice(booking.getPrice());
@@ -115,6 +119,7 @@ public class AdminServiceImpl implements AdminService {
         List<User> users = userRepository.findAll();
         for (User user : users) {
             UserDTO userDTO = new UserDTO();
+            userDTO.setId(user.getId());
             userDTO.setUserName(user.getUserName());
             userDTO.setUserEmail(user.getUserEmail());
             userDTO.setUserPhone(user.getUserPhone());
@@ -122,5 +127,35 @@ public class AdminServiceImpl implements AdminService {
             userDTOS.add(userDTO);
         }
         return userDTOS;
+    }
+//========================================================DELETE=========================================================//
+    @Override
+    public TypeCarDTO removeTypeCar(Long id) {
+        typeCarRepository.deleteById(id);
+        return null;
+    }
+
+    @Override
+    public CarDTO removeCar(Long id) {
+        carRepository.deleteById(id);
+        return null;
+    }
+
+    @Override
+    public CarOwnerDTO removeCarOwner(Long id) {
+        carOwnerRepository.deleteById(id);
+        return null;
+    }
+
+    @Override
+    public BookingDTO removeBooking(Long id) {
+        bookingRepository.deleteById(id);
+        return null;
+    }
+
+    @Override
+    public UserDTO removeUser(Long id) {
+        userRepository.deleteById(id);
+        return null;
     }
 }

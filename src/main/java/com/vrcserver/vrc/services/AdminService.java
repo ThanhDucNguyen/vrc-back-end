@@ -16,4 +16,14 @@ public interface AdminService {
     List<BookingDTO> getBooking();
 
     List<UserDTO> getUser();
+
+    TypeCarDTO removeTypeCar(Long id);
+
+    CarDTO removeCar(Long id);
+
+    CarOwnerDTO removeCarOwner(Long id);
+
+    BookingDTO removeBooking(Long id);
+
+    UserDTO removeUser(Long id);
 }
