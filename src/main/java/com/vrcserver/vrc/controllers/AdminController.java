@@ -37,6 +37,11 @@ public class AdminController {
         TypeCarDTO typeCarDTO = adminService.removeTypeCar(id);
         return new Response<>(true, typeCarDTO, "Successful remove");
     }
+    @PostMapping(value = "/addTypeCar")
+    public Response<TypeCarDTO> addTypeCar(@RequestBody TypeCarDTO typeCarDTO){
+        typeCarDTO = adminService.addTypeCar(typeCarDTO);
+        return new Response<>(true,typeCarDTO,"Add successful !");
+    }
 
     //--------------------------------- Car ---------------------------------------//
     @GetMapping(value = "/getCar")
@@ -49,6 +54,11 @@ public class AdminController {
         CarDTO carDTO = adminService.removeCar(id);
         return new Response<>(true, carDTO, "Successful remove");
     }
+    @PostMapping(value = "/addCar")
+    public Response<CarDTO> addCar(@RequestBody CarDTO carDTO){
+        carDTO = adminService.addCar(carDTO);
+        return new Response<>(true,carDTO,"Add successful !");
+    }
 
     //--------------------------------- Car Owner ---------------------------------//
     @GetMapping(value = "/getCarOwner")
@@ -60,6 +70,11 @@ public class AdminController {
     public Response<CarOwnerDTO> removeCarOwner(@PathVariable(value = "id") Long id) {
         CarOwnerDTO carOwnerDTO = adminService.removeCarOwner(id);
         return new Response<>(true, carOwnerDTO, "Successful remove");
+    }
+    @PostMapping(value = "/addCarOwner")
+    public Response<CarOwnerDTO> addCarOwner(@RequestBody CarOwnerDTO carOwnerDTO){
+        carOwnerDTO = adminService.addCarOwner(carOwnerDTO);
+        return new Response<>(true, carOwnerDTO,"Add successful !");
     }
 
     //--------------------------------- Booking ---------------------------------//
@@ -84,5 +99,10 @@ public class AdminController {
     public Response<UserDTO> removeUser(@PathVariable(value = "id") Long id) {
         UserDTO userDTO = adminService.removeUser(id);
         return new Response<>(true, userDTO, "Successful remove");
+    }
+    @PostMapping(value = "/addUser")
+    public Response<UserDTO> addUser(@RequestBody UserDTO userDTO){
+        userDTO = adminService.addUser(userDTO);
+        return new Response<>(true, userDTO,"Add successful !");
     }
 }

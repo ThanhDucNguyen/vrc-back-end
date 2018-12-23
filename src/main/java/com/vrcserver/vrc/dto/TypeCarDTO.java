@@ -7,22 +7,24 @@ import java.util.Set;
 public class TypeCarDTO {
     private Long id;
     private String name;
-    private Set<Car> cars;
+    private String image;
+    private Set<CarDTO> cars;
 
     @Override
     public String toString() {
         return "TypeCarDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
                 ", cars=" + cars +
                 '}';
     }
 
-    public Set<Car> getCars() {
+    public Set<CarDTO> getCars() {
         return cars;
     }
 
-    public void setCars(Set<Car> cars) {
+    public void setCars(Set<CarDTO> cars) {
         this.cars = cars;
     }
 
@@ -40,5 +42,13 @@ public class TypeCarDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

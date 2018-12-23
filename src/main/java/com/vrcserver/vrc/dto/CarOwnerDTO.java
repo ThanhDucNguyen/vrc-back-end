@@ -12,7 +12,7 @@ public class CarOwnerDTO {
     private String ownerEmail;
     private String ownerPhone;
     private String ownerAddress;
-    private Set<Car> cars;
+    private Set<CarDTO> cars;
 
     @Override
     public String toString() {
@@ -26,11 +26,11 @@ public class CarOwnerDTO {
                 '}';
     }
 
-    public Set<Car> getCars() {
+    public Set<CarDTO> getCars() {
         return cars;
     }
 
-    public void setCars(Set<Car> cars) {
+    public void setCars(Set<CarDTO> cars) {
         this.cars = cars;
     }
 

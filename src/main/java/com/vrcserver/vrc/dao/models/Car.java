@@ -23,6 +23,9 @@ public class Car {
     @Column(name = "price_default")
     private Integer price;
 
+    @Column(name = "image")
+    private String image;
+
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
     private Set<Booking> bookings;
 
@@ -56,6 +59,14 @@ public class Car {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Set<Booking> getBookings() {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -49,6 +50,14 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public TypeCarDTO addTypeCar(TypeCarDTO typeCarDTO) {
+        TypeCar typeCar = new TypeCar();
+        typeCar.setName(typeCarDTO.getName());
+        typeCarRepository.save(typeCar);
+        return null;
+    }
+
+    @Override
     public List<CarDTO> getCar() {
         List<CarDTO> carDTOS = new ArrayList<>();
         List<Car> cars = carRepository.findAll();
@@ -70,6 +79,26 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public CarDTO addCar(CarDTO carDTO) {
+        Car car = new Car();
+        car.setModel(carDTO.getModel());
+        car.setPrice(carDTO.getPrice());
+        car.setType(carDTO.getType());
+        car.setYearCar(carDTO.getYearCar());
+        car.setImage(carDTO.getImage());
+        Optional<TypeCar> typeCarOptional = typeCarRepository.findById(carDTO.getTypeCar().getId());
+        if (typeCarOptional.isPresent()){
+            car.setTypeCar(typeCarOptional.get());
+        }
+        Optional<CarOwner> carOwnerOptional = carOwnerRepository.findById(carDTO.getCarOwner().getId());
+        if (carOwnerOptional.isPresent()){
+            car.setCarOwner(carOwnerOptional.get());
+        }
+        carRepository.save(car);
+        return null;
+    }
+
+    @Override
     public List<CarOwnerDTO> getCarOwner() {
         List<CarOwnerDTO> carOwnerDTOS = new ArrayList<>();
         List<CarOwner> carOwners = carOwnerRepository.findAll();
@@ -84,6 +113,17 @@ public class AdminServiceImpl implements AdminService {
             carOwnerDTOS.add(carOwnerDTO);
         }
         return carOwnerDTOS;
+    }
+
+    @Override
+    public CarOwnerDTO addCarOwner(CarOwnerDTO carOwnerDTO) {
+        CarOwner carOwner = new CarOwner();
+        carOwner.setOwnerName(carOwnerDTO.getOwnerName());
+        carOwner.setOwnerEmail(carOwnerDTO.getOwnerEmail());
+        carOwner.setOwnerPhone(carOwnerDTO.getOwnerPhone());
+        carOwner.setOwnerAddress(carOwnerDTO.getOwnerAddress());
+        carOwnerRepository.save(carOwner);
+        return null;
     }
 
     @Override
@@ -128,7 +168,20 @@ public class AdminServiceImpl implements AdminService {
         }
         return userDTOS;
     }
-//========================================================DELETE=========================================================//
+
+    @Override
+    public UserDTO addUser(UserDTO userDTO) {
+        User user = new User();
+        user.setUserName(userDTO.getUserName());
+        user.setUserEmail(userDTO.getUserEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setUserPhone(userDTO.getUserPhone());
+        user.setRole(userDTO.getRole());
+        userRepository.save(user);
+        return null;
+    }
+
+    //========================================================DELETE=========================================================//
     @Override
     public TypeCarDTO removeTypeCar(Long id) {
         typeCarRepository.deleteById(id);

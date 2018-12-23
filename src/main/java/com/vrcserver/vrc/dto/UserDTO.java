@@ -13,7 +13,7 @@ public class UserDTO {
     private String userEmail;
     private Integer role;
     private String password;
-    private Set<Booking> bookings;
+    private Set<BookingDTO> bookings;
 
     @Override
     public String toString() {
@@ -28,10 +28,6 @@ public class UserDTO {
                 '}';
     }
 
-    public Set<Booking> getBookings() {
-        return bookings;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -40,7 +36,11 @@ public class UserDTO {
         this.password = password;
     }
 
-    public void setBookings(Set<Booking> bookings) {
+    public Set<BookingDTO> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<BookingDTO> bookings) {
         this.bookings = bookings;
     }
 

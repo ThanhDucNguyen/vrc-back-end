@@ -15,8 +15,9 @@ public class CarDTO {
     private String type;
     private String yearCar;
     private Integer price;
-    private Set<Booking> bookings;
-    private TypeCar typeCar;
+    private String image;
+    private Set<BookingDTO> bookings;
+    private TypeCarDTO typeCar;
     private CarOwnerDTO carOwner;
 
     @Override
@@ -27,6 +28,7 @@ public class CarDTO {
                 ", type='" + type + '\'' +
                 ", yearCar='" + yearCar + '\'' +
                 ", price=" + price +
+                ", image='" + image + '\'' +
                 ", bookings=" + bookings +
                 ", typeCar=" + typeCar +
                 ", carOwner=" + carOwner +
@@ -49,14 +51,15 @@ public class CarDTO {
         this.type = type;
     }
 
-    public Set<Booking> getBookings() {
-        return bookings;
+
+
+    public String getImage() {
+        return image;
     }
 
-    public void setBookings(Set<Booking> bookings) {
-        this.bookings = bookings;
+    public void setImage(String image) {
+        this.image = image;
     }
-
 
     public CarOwnerDTO getCarOwner() {
         return carOwner;
@@ -88,5 +91,21 @@ public class CarDTO {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Set<BookingDTO> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<BookingDTO> bookings) {
+        this.bookings = bookings;
+    }
+
+    public TypeCarDTO getTypeCar() {
+        return typeCar;
+    }
+
+    public void setTypeCar(TypeCarDTO typeCar) {
+        this.typeCar = typeCar;
     }
 }
