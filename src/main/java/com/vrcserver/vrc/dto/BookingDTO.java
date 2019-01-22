@@ -10,11 +10,11 @@ import java.util.Date;
 public class BookingDTO {
     private Long id;
     @Temporal(TemporalType.DATE)
-    private Date date = new Date();
+    private Date bookingDate = new Date();
     private Boolean pay;
-    private Integer price;
-    private Date rentalDay;
-    private Date returnDay;
+    private Double price;
+    private String rentalDay;
+    private String returnDay;
     private CarDTO car;
     private UserDTO user;
 
@@ -22,7 +22,7 @@ public class BookingDTO {
     public String toString() {
         return "BookingDTO{" +
                 "id=" + id +
-                ", date=" + date +
+                ", bookingDate=" + bookingDate +
                 ", pay=" + pay +
                 ", price=" + price +
                 ", rentalDay=" + rentalDay +
@@ -36,12 +36,12 @@ public class BookingDTO {
         return car;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getBookingDate() {
+        return bookingDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setBookingDate(Date bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
     public void setCar(CarDTO car) {
@@ -72,27 +72,27 @@ public class BookingDTO {
         this.pay = pay;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Date getRentalDay() {
+    public String getRentalDay() {
         return rentalDay;
     }
 
-    public void setRentalDay(Date rentalDay) {
+    public void setRentalDay(String rentalDay) {
         this.rentalDay = rentalDay;
     }
 
-    public Date getReturnDay() {
+    public String getReturnDay() {
         return returnDay;
     }
 
-    public void setReturnDay(Date returnDay) {
+    public void setReturnDay(String returnDay) {
         this.returnDay = returnDay;
     }
 }

@@ -32,6 +32,8 @@ public class AdminServiceImpl implements AdminService {
         if (user != null) {
             userDTO.setId(user.getId());
         }
+        else
+            userDTO.setMessage("Login failed for user");
         return userDTO;
     }
 
@@ -53,6 +55,7 @@ public class AdminServiceImpl implements AdminService {
     public TypeCarDTO addTypeCar(TypeCarDTO typeCarDTO) {
         TypeCar typeCar = new TypeCar();
         typeCar.setName(typeCarDTO.getName());
+        typeCar.setImage(typeCarDTO.getImage());
         typeCarRepository.save(typeCar);
         return null;
     }
@@ -98,6 +101,27 @@ public class AdminServiceImpl implements AdminService {
         return null;
     }
 
+//    @Override
+//    public CarDTO updateCar(Long id) {
+//        Car car = carRepository.findCarById(id);
+//        CarDTO carDTO = new CarDTO();
+//        carDTO.setId(car.getId());
+//        carDTO.setModel(car.getModel());
+//        carDTO.setPrice(car.getPrice());
+//        carDTO.setYearCar(car.getYearCar());
+//        carDTO.setType(car.getType());
+//        carDTO.setImage(car.getImage());
+//
+////        CarOwnerDTO carOwnerDTO = new CarOwnerDTO();
+////        carOwnerDTO.setId(car.getCarOwner().getId());
+////
+////        TypeCarDTO typeCarDTO = new TypeCarDTO();
+////        typeCarDTO.setId(car.getTypeCar().getId());
+////        carDTO.setTypeCar(typeCarDTO);
+//
+//        carRepository.save(carDTO);
+//    }
+
     @Override
     public List<CarOwnerDTO> getCarOwner() {
         List<CarOwnerDTO> carOwnerDTOS = new ArrayList<>();
@@ -109,6 +133,8 @@ public class AdminServiceImpl implements AdminService {
             carOwnerDTO.setOwnerEmail(carOwner.getOwnerEmail());
             carOwnerDTO.setOwnerPhone(carOwner.getOwnerPhone());
             carOwnerDTO.setOwnerAddress(carOwner.getOwnerAddress());
+
+
 
             carOwnerDTOS.add(carOwnerDTO);
         }
@@ -122,6 +148,10 @@ public class AdminServiceImpl implements AdminService {
         carOwner.setOwnerEmail(carOwnerDTO.getOwnerEmail());
         carOwner.setOwnerPhone(carOwnerDTO.getOwnerPhone());
         carOwner.setOwnerAddress(carOwnerDTO.getOwnerAddress());
+        Optional<User> userOptional = userRepository.findById(carOwnerDTO.getUser().getId());
+        if (userOptional.isPresent()){
+            carOwner.setUser(userOptional.get());
+        }
         carOwnerRepository.save(carOwner);
         return null;
     }
@@ -133,7 +163,7 @@ public class AdminServiceImpl implements AdminService {
         for (Booking booking : bookings) {
             BookingDTO bookingDTO = new BookingDTO();
             bookingDTO.setId(booking.getId());
-            bookingDTO.setDate(booking.getBookingDate());
+            bookingDTO.setBookingDate(booking.getBookingDate());
             bookingDTO.setPay(booking.getPay());
             bookingDTO.setPrice(booking.getPrice());
             bookingDTO.setRentalDay(booking.getRentalDay());
@@ -151,6 +181,26 @@ public class AdminServiceImpl implements AdminService {
             bookingDTOS.add(bookingDTO);
         }
         return bookingDTOS;
+    }
+
+    @Override
+    public BookingDTO addBooking(BookingDTO bookingDTO) {
+        Booking booking = new Booking();
+        booking.setPay(bookingDTO.getPay());
+        booking.setRentalDay(bookingDTO.getRentalDay());
+        booking.setReturnDay(bookingDTO.getReturnDay());
+        booking.setPrice(bookingDTO.getPrice());
+        booking.setBookingDate(bookingDTO.getBookingDate());
+        Optional<Car> carOptional = carRepository.findById(bookingDTO.getCar().getId());
+        if (carOptional.isPresent()){
+            booking.setCar(carOptional.get());
+        }
+        Optional<User> userOptional = userRepository.findById(bookingDTO.getUser().getId());
+        if (userOptional.isPresent()){
+            booking.setUser(userOptional.get());
+        }
+        bookingRepository.save(booking);
+        return null;
     }
 
     @Override
@@ -210,5 +260,101 @@ public class AdminServiceImpl implements AdminService {
     public UserDTO removeUser(Long id) {
         userRepository.deleteById(id);
         return null;
+    }
+
+    @Override
+    public void updateTypeCar(TypeCarDTO typeCarDTO) {
+        Optional<TypeCar> typeCarOptional = typeCarRepository.findById(typeCarDTO.getId());
+        if (typeCarOptional.isPresent()){
+            TypeCar typeCar = typeCarOptional.get();
+            typeCar.setName(typeCarDTO.getName());
+            typeCar.setImage(typeCarDTO.getImage());
+            typeCarRepository.save(typeCar);
+        }
+    }
+
+    @Override
+    public TypeCar findTypeCar(Long id) {
+        TypeCar typeCar = typeCarRepository.findByIdTypeCar(id);
+        return typeCar;
+    }
+
+    @Override
+    public Car findCar(Long id) {
+        Car car = carRepository.findCarById(id);
+        return car;
+    }
+
+    @Override
+    public void updateCar(CarDTO carDTO) {
+        Optional<Car> carOptional = carRepository.findById(carDTO.getId());
+        if (carOptional.isPresent()){
+            Car car = carOptional.get();
+            car.setModel(carDTO.getModel());
+            car.setPrice(carDTO.getPrice());
+            car.setType(carDTO.getType());
+            car.setYearCar(carDTO.getYearCar());
+            car.setImage(carDTO.getImage());
+            Optional<TypeCar> typeCarOptional = typeCarRepository.findById(carDTO.getTypeCar().getId());
+            if (typeCarOptional.isPresent()){
+                car.setTypeCar(typeCarOptional.get());
+            }
+            Optional<CarOwner> carOwnerOptional = carOwnerRepository.findById(carDTO.getCarOwner().getId());
+            if (carOwnerOptional.isPresent()){
+                car.setCarOwner(carOwnerOptional.get());
+            }
+            carRepository.save(car);
+        }
+    }
+
+    @Override
+    public CarOwner findCarOwner(Long id) {
+        CarOwner carOwner = carOwnerRepository.findCarOwnerById(id);
+        return carOwner;
+    }
+
+    @Override
+    public void updateCarOwner(CarOwnerDTO carOwnerDTO) {
+        Optional<CarOwner> carOwnerOptional = carOwnerRepository.findById(carOwnerDTO.getId());
+        if (carOwnerOptional.isPresent()){
+            CarOwner carOwner = carOwnerOptional.get();
+            carOwner.setOwnerAddress(carOwnerDTO.getOwnerAddress());
+            carOwner.setOwnerEmail(carOwnerDTO.getOwnerEmail());
+            carOwner.setOwnerName(carOwnerDTO.getOwnerName());
+            carOwner.setOwnerPhone(carOwnerDTO.getOwnerPhone());
+            Optional<User> userOptional = userRepository.findById(carOwnerDTO.getUser().getId());
+            if (userOptional.isPresent()){
+                carOwnerDTO.setUser(userOptional.get());
+            }
+            carOwnerRepository.save(carOwner);
+        }
+    }
+
+    @Override
+    public Booking findBooking(Long id) {
+        Booking booking = bookingRepository.findBookingById(id);
+        return booking;
+    }
+
+    @Override
+    public void updateBooking(BookingDTO bookingDTO) {
+        Optional<Booking> bookingOptional = bookingRepository.findById(bookingDTO.getId());
+        if (bookingOptional.isPresent()){
+            Booking booking = bookingOptional.get();
+            booking.setPrice(bookingDTO.getPrice());
+            booking.setPay(bookingDTO.getPay());
+            booking.setRentalDay(bookingDTO.getRentalDay());
+            booking.setReturnDay(bookingDTO.getReturnDay());
+            booking.setBookingDate(bookingDTO.getBookingDate());
+            Optional<Car> carOptional = carRepository.findById(bookingDTO.getCar().getId());
+            if (carOptional.isPresent()){
+                booking.setCar(carOptional.get());
+            }
+            Optional<User> userOptional = userRepository.findById(bookingDTO.getUser().getId());
+            if (userOptional.isPresent()){
+                booking.setUser(userOptional.get());
+            }
+            bookingRepository.save(booking);
+        }
     }
 }

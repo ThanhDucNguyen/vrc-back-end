@@ -26,6 +26,10 @@ public class CarOwner {
     @OneToMany(mappedBy = "carOwner", fetch = FetchType.EAGER)
     private Set<Car> cars;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Set<Car> getCars() {
         return cars;
     }
@@ -72,5 +76,13 @@ public class CarOwner {
 
     public void setOwnerAddress(String ownerAddress) {
         this.ownerAddress = ownerAddress;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

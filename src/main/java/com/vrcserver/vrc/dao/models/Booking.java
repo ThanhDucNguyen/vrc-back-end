@@ -18,13 +18,15 @@ public class Booking {
     private Boolean pay;
 
     @Column(name = "price")
-    private Integer price;
+    private Double price;
 
+  //  @Temporal(TemporalType.DATE)
     @Column(name = "rental_day")
-    private Date rentalDay;
+    private String rentalDay;
 
+ //   @Temporal(TemporalType.DATE)
     @Column(name = "return_day")
-    private Date returnDay;
+    private String returnDay;
 
     @ManyToOne
     @JoinColumn(name = "car_id")
@@ -74,27 +76,27 @@ public class Booking {
         this.pay = pay;
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Date getRentalDay() {
+    public String getRentalDay() {
         return rentalDay;
     }
 
-    public void setRentalDay(Date rentalDay) {
+    public void setRentalDay(String rentalDay) {
         this.rentalDay = rentalDay;
     }
 
-    public Date getReturnDay() {
+    public String getReturnDay() {
         return returnDay;
     }
 
-    public void setReturnDay(Date returnDay) {
+    public void setReturnDay(String returnDay) {
         this.returnDay = returnDay;
     }
 }

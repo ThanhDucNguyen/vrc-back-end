@@ -1,8 +1,7 @@
 package com.vrcserver.vrc.dto;
 
-import com.vrcserver.vrc.dao.models.Car;
+import com.vrcserver.vrc.dao.models.User;
 
-import javax.persistence.*;
 import java.util.Set;
 
 public class CarOwnerDTO {
@@ -13,6 +12,7 @@ public class CarOwnerDTO {
     private String ownerPhone;
     private String ownerAddress;
     private Set<CarDTO> cars;
+    private User user;
 
     @Override
     public String toString() {
@@ -23,6 +23,7 @@ public class CarOwnerDTO {
                 ", ownerPhone='" + ownerPhone + '\'' +
                 ", ownerAddress='" + ownerAddress + '\'' +
                 ", cars=" + cars +
+                ", user=" + user +
                 '}';
     }
 
@@ -72,5 +73,13 @@ public class CarOwnerDTO {
 
     public void setOwnerAddress(String ownerAddress) {
         this.ownerAddress = ownerAddress;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

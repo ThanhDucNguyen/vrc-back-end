@@ -14,4 +14,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "inner join type_car as y on s.type_car_id = y.type_car_id" +
             " WHERE s.type like %?1% and s.year like %?2% and s.car_model like %?3% and  y.name like %?4%", nativeQuery = true)
     List<Car> getCar(String type, String year, String model, String name);
+    @Query(value = "select *from car where car_id =?1", nativeQuery = true)
+    Car findCarById(Long id);
 }

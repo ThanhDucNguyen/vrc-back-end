@@ -10,4 +10,6 @@ import java.util.List;
 
 @Repository
 public interface TypeCarRepository extends JpaRepository<TypeCar, Long> {
+    @Query(value = "select * from type_car where type_car_id=?1", nativeQuery = true)
+    TypeCar findByIdTypeCar(Long id);
 }

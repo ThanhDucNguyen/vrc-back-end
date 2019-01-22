@@ -1,6 +1,7 @@
 package com.vrcserver.vrc.dto;
 
 import com.vrcserver.vrc.dao.models.Booking;
+import com.vrcserver.vrc.dao.models.CarOwner;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,7 +14,9 @@ public class UserDTO {
     private String userEmail;
     private Integer role;
     private String password;
+    private String message;
     private Set<BookingDTO> bookings;
+    private Set<CarOwnerDTO> carOwners;
 
     @Override
     public String toString() {
@@ -24,7 +27,9 @@ public class UserDTO {
                 ", userEmail='" + userEmail + '\'' +
                 ", role=" + role +
                 ", password='" + password + '\'' +
+                ", message='" + message + '\'' +
                 ", bookings=" + bookings +
+                ", carOwners=" + carOwners +
                 '}';
     }
 
@@ -50,6 +55,14 @@ public class UserDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<CarOwnerDTO> getCarOwners() {
+        return carOwners;
+    }
+
+    public void setCarOwners(Set<CarOwnerDTO> carOwners) {
+        this.carOwners = carOwners;
     }
 
     public String getUserName() {
@@ -82,5 +95,13 @@ public class UserDTO {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

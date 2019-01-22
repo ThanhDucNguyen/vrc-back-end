@@ -29,6 +29,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Booking> bookings;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<CarOwner> carOwners;
+
     public String getPassword() {
         return password;
     }
@@ -83,5 +86,13 @@ public class User {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public Set<CarOwner> getCarOwners() {
+        return carOwners;
+    }
+
+    public void setCarOwners(Set<CarOwner> carOwners) {
+        this.carOwners = carOwners;
     }
 }
