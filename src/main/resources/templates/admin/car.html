@@ -90,10 +90,10 @@
                             <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                         </a>
 
-                        <div class="user-menu dropdown-menu">
-                            
-
-                            <a class="nav-link" th:href="@{/logout}"><i class="fa fa-power-off"></i> Logout</a>
+                        <div style="margin: 8px 10px 0 0" class="user-area dropdown float-right">
+                            <a th:href="@{/logout}" id="logout" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <p>Logout</p>
+                            </a>
                         </div>
                     </div>
 

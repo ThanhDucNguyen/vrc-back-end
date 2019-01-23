@@ -143,32 +143,32 @@ public class VrcServiceImpl implements VrcService {
 
     @Override
     public void rentCar(BookingDTO bookingDTO) {
-        DateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-        Date currentDate = new Date();
-        Date date1 = null;
-        Date date2 = null;
-        Double money = null;
-
-        try {
-            date1 = simpleDateFormat.parse(bookingDTO.getRentalDay());
-            date2 = simpleDateFormat.parse(bookingDTO.getReturnDay());
-            
-            long getDiff = date2.getTime() - date1.getTime();
-            long getDaysDiff = getDiff / (24 * 60 * 60 * 1000);
-
-            Optional<Car> carOptional = carRepository.findById(bookingDTO.getCar().getId());
-            if (carOptional.isPresent()) {
-                Car car = carOptional.get();
-                money = car.getPrice().doubleValue() * getDaysDiff;
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        DateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//
+//        Date currentDate = new Date();
+//        Date date1 = null;
+//        Date date2 = null;
+//        Double money = null;
+//
+//        try {
+//            date1 = simpleDateFormat.parse(bookingDTO.getRentalDay());
+//            date2 = simpleDateFormat.parse(bookingDTO.getReturnDay());
+//
+//            long getDiff = date2.getTime() - date1.getTime();
+//            long getDaysDiff = getDiff / (24 * 60 * 60 * 1000);
+//
+//            Optional<Car> carOptional = carRepository.findById(bookingDTO.getCar().getId());
+//            if (carOptional.isPresent()) {
+//                Car car = carOptional.get();
+//                money = car.getPrice().doubleValue() * getDaysDiff;
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         Booking booking = new Booking();
         booking.setPay(bookingDTO.getPay());
-        booking.setPrice(money);
+        booking.setPrice(bookingDTO.getPrice());
         booking.setRentalDay(bookingDTO.getRentalDay());
         booking.setReturnDay(bookingDTO.getReturnDay());
         Optional<User> userOptional = userRepository.findById(bookingDTO.getUser().getId());
@@ -194,7 +194,7 @@ public class VrcServiceImpl implements VrcService {
         MimeMessageHelper helper = new MimeMessageHelper(message);
 
         try {
-
+            helper.setTo(saveBooking.getCar().getCarOwner().getOwnerEmail());
             helper.setTo(saveBooking.getUser().getUserEmail());
             helper.setText("\nHi: " + saveBooking.getUser().getUserName() +
                     "\nPhone: " + saveBooking.getUser().getUserPhone() +
