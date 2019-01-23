@@ -118,7 +118,7 @@
                                     <tbody>
                                         <tr th:each="list : ${listTypeCar}">
                                             <th scope="row" th:text="${list.id}"></th>
-                                            <td><a href="#" th:text="${list.name}"></a></td>
+                                            <td><a style="text-transform: uppercase" href="#" th:text="${list.name}"></a></td>
                                             <td style="width: 195px;">
                                                 <a th:href="@{/admin-detailTypeCar-{id}(id=${list.id})}"><button type="button" class="btn btn-primary btn-sm">Detail</button></a>
                                                 <a th:href="@{/admin-updateTypeCar-{id}(id=${list.id})}">

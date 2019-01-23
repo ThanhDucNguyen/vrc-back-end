@@ -52,7 +52,7 @@ public class AdminController {
     public ModelAndView logout(HttpSession session) {
         ModelAndView mav = new ModelAndView();
         session.removeAttribute("user");
-        mav.setViewName("redirect:/admin/login");
+        mav.setViewName("redirect:/admin-login");
         return mav;
     }
     @GetMapping(value = "/admin")
@@ -167,10 +167,18 @@ public class AdminController {
         return mav;
     }
     @PostMapping(value = "/admin-addTypeCar-Process")
-    public ModelAndView getTypeCarProcess(TypeCarDTO typeCarDTO){
+    public ModelAndView getTypeCarProcess(TypeCarDTO typeCarDTO,HttpSession session){
         ModelAndView mav = new ModelAndView();
-        mav.addObject("add",adminService.addTypeCar(typeCarDTO));
-        mav.setViewName("redirect:/admin-listTypeCar");
+        TypeCar check = adminService.checkTypeCarName(typeCarDTO);
+        if (check.getId() != null) {
+            typeCarDTO.setMessage("Type Car Name đã tồn tại");
+            session.setAttribute("error", typeCarDTO.getMessage());
+            mav.setViewName("redirect:/admin-addTypeCar");
+        }
+        else {
+            mav.addObject("add", adminService.addTypeCar(typeCarDTO));
+            mav.setViewName("redirect:/admin-listTypeCar");
+        }
         return mav;
     }
     @GetMapping(value = "/admin-addCarOwner")

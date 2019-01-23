@@ -58,4 +58,6 @@ public interface AdminService {
     void updateBooking(BookingDTO bookingDTO);
 
     BookingDTO addBooking(BookingDTO bookingDTO);
+
+    TypeCar checkTypeCarName(TypeCarDTO typeCarDTO);
 }

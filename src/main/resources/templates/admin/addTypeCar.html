@@ -114,6 +114,9 @@
                                 <strong>Add Type Car</strong> Form
                             </div>
                             <form class="card-body card-block" th:action="@{/admin-addTypeCar-Process}" method="post" role="form" th:object="${add}">
+                                <small style="color: #721c24;"
+                                       class="error" th:text="${session.error}">
+                                </small>
                                 <div class="has-success form-group" >
                                     <label for="inputIsValid" class=" form-control-label">Name type car</label>
                                     <input th:field="*{name}" type="text" id="inputIsValid" class="is-valid form-control-success form-control" placeholder="-- Example: Audi">

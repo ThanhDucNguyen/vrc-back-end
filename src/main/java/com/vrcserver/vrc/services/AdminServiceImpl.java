@@ -52,6 +52,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public TypeCar checkTypeCarName(TypeCarDTO typeCarDTO) {
+        return typeCarRepository.checkNameTypeCar(typeCarDTO.getName());
+    }
+
+    @Override
     public TypeCarDTO addTypeCar(TypeCarDTO typeCarDTO) {
         TypeCar typeCar = new TypeCar();
         typeCar.setName(typeCarDTO.getName());

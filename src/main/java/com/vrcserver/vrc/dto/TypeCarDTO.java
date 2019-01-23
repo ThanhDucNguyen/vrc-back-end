@@ -8,6 +8,7 @@ public class TypeCarDTO {
     private Long id;
     private String name;
     private String image;
+    private String message;
     private Set<CarDTO> cars;
 
     @Override
@@ -16,6 +17,7 @@ public class TypeCarDTO {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", image='" + image + '\'' +
+                ", message='" + message + '\'' +
                 ", cars=" + cars +
                 '}';
     }
@@ -50,5 +52,13 @@ public class TypeCarDTO {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
