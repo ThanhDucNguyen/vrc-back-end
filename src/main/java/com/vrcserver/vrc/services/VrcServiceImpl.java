@@ -44,19 +44,32 @@ public class VrcServiceImpl implements VrcService {
 
     @Override
     public UserDTO login(UserDTO userDTO) {
-        User user = userRepository.findByUserNameAndPassword(userDTO.getUserName(), userDTO.getPassword());
+        User user = userRepository.findByUserNameAndPassword(userDTO.getUserEmail(), userDTO.getPassword());
         if (user != null) {
             userDTO.setId(user.getId());
             userDTO.setUserName(user.getUserName());
-            userDTO.setUserPhone(user.getUserPhone());
             userDTO.setUserEmail(user.getUserEmail());
+
+//            List<BookingDTO> listBooking = new ArrayList<>();
+//            Optional<User> users = userRepository.findById(user.getId());
+//            for (Booking booking:users.get().getBookings()){
+//                BookingDTO bookingDTO = new BookingDTO();
+//                bookingDTO.setRentalDay(booking.getRentalDay());
+//
+//                CarDTO carDTO = new CarDTO();
+//                carDTO.setModel(booking.getCar().getModel());
+//
+//                bookingDTO.setCar(carDTO);
+//
+//                listBooking.add(bookingDTO);
+//            }
         }
         return userDTO;
     }
 
     @Override
     public User checkUserName(UserDTO userDTO) {
-        return userRepository.checkUserName(userDTO.getUserName());
+        return userRepository.checkUserName(userDTO.getUserEmail());
     }
 
     @Override
@@ -64,10 +77,27 @@ public class VrcServiceImpl implements VrcService {
         User user = new User();
         user.setUserEmail(userDTO.getUserEmail());
         user.setUserName(userDTO.getUserName());
-        user.setUserPhone(userDTO.getUserPhone());
-        user.setPassword(userDTO.getPassword());
-        user.setRole(2);
+        String a = userDTO.getUserName().replace(" ", "").toLowerCase();
+        user.setPassword(a+""+userDTO.getNumberPass());
+        user.setRole(1);
         userRepository.save(user);
+        MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        try {
+            helper.setTo(user.getUserEmail());
+            helper.setText("\nVIETNAMRENTALCAR " +
+                    "\nChào: " + user.getUserName() +
+                    "\nCảm ơn bạn đã sửa dụng ứng dụng của chúng tôi"+
+                    "\nMật khẩu của bạn: " + user.getPassword() +
+                    "\n-------------------------------------------" +
+                    "\nTHANK YOU FOR READING THE LETTER"
+            );
+            helper.setSubject("Mail From Spring Boot");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        sender.send(message);
     }
 
     @Override

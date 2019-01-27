@@ -4,9 +4,18 @@ import com.vrcserver.vrc.dao.models.Booking;
 import com.vrcserver.vrc.dao.models.CarOwner;
 
 import javax.persistence.*;
+import java.util.Random;
 import java.util.Set;
 
 public class UserDTO {
+
+    public UserDTO() {
+        int min = 1;
+        int max = 999;
+        Random rd = new Random();
+        numberPass = min + rd.nextInt(max - min);
+    }
+
 
     private Long id;
     private String userName;
@@ -17,6 +26,9 @@ public class UserDTO {
     private String message;
     private Set<BookingDTO> bookings;
     private Set<CarOwnerDTO> carOwners;
+    private Integer numberPass;
+
+
 
     @Override
     public String toString() {
@@ -31,6 +43,14 @@ public class UserDTO {
                 ", bookings=" + bookings +
                 ", carOwners=" + carOwners +
                 '}';
+    }
+
+    public Integer getNumberPass() {
+        return numberPass;
+    }
+
+    public void setNumberPass(Integer numberPass) {
+        this.numberPass = numberPass;
     }
 
     public String getPassword() {

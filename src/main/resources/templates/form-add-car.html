@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Contact V4</title>
 	<meta charset="UTF-8">
@@ -30,58 +30,87 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form">
+			<form class="contact100-form validate-form" th:action="@{/admin-them-xe-Process}" method="post" role="form" th:object="${add}">
 				<span class="contact100-form-title">
 					Say Hello!
 				</span>
 
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
 					<span class="label-input100">Tên chủ xe</span>
-					<input class="input100" type="text" name="name" placeholder="Nhập tên chủ xe">
+					<input class="input100" type="text" name="name" placeholder="Nhập tên chủ xe" th:field="*{carOwner.ownerName}">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">Email</span>
-					<input class="input100" type="text" name="email" placeholder="Nhập email chủ xe: ex@abc.xyz>
+					<input class="input100" type="text" name="email" placeholder="Nhập email chủ xe: ex@abc.xyz" th:field="*{carOwner.ownerEmail}">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">Địa chỉ</span>
-					<input class="input100" type="text" name="addess" placeholder="Nhập địa chỉ chủ xe">
+					<input class="input100" type="text" name="addess" placeholder="Nhập địa chỉ chủ xe" th:field="*{carOwner.ownerAddress}">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Số điện thoại</span>
+					<input class="input100" type="text" name="addess" placeholder="Nhập địa chỉ chủ xe" th:field="*{carOwner.ownerPhone}">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 input100-select">
 					<span class="label-input100">Hãng xe</span>
 					<div>
-						<select class="selection-2" name="service">
-							<option>Audi</option>
-							<option>Honda</option>
-							<option>HuynhDai</option>
-							<option>Lexus</option>
-							<option>Nissan</option>
+						<select class="selection-2" name="service" th:field="*{typeCar.id}">
+							<option style="text-transform: uppercase" th:each="list:${listTypeCar}" th:value="${list.id}" th:text="${list.name}"></option>
 						</select>
+
 					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+				<!--<div class="wrap-input100 input100-select">-->
+					<!--<span class="label-input100">Chỗ ngồi</span>-->
+					<!--<div>-->
+						<!--&lt;!&ndash;<select class="selection-2" name="service" th:field="*{type}">&ndash;&gt;-->
+							<!--&lt;!&ndash;<option>4</option>&ndash;&gt;-->
+							<!--&lt;!&ndash;<option>7</option>&ndash;&gt;-->
+						<!--&lt;!&ndash;</select>&ndash;&gt;-->
+
+					<!--</div>-->
+					<!--<span class="focus-input100"></span>-->
+				<!--</div>-->
+				<div class="wrap-input100 input100-select">
+					<span class="label-input100">Chỗ ngồi</span>
+					<select class="selection-2" name="service" th:field="*{typeCar.id}">
+						<option th:value="'4'">4 Chỗ</option>
+						<option th:value="'7'">7 Chỗ</option>
+					</select>
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">Loại xe</span>
-					<input class="input100" type="text" name="addess" placeholder="HuynhDai Accent">
+					<input class="input100" type="text" name="addess" placeholder="HuynhDai Accent" th:field="*{model}">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 					<span class="label-input100">Giá xe cho thuê ( Giá/ 1 Ngày )</span>
-					<input class="input100" type="text" name="addess" placeholder="Nhập giá thuê xe">
+					<input class="input100" type="text" name="addess" placeholder="Nhập giá thuê xe" th:field="*{price}">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Năm mua xe</span>
+					<input class="input100" type="text" name="addess" placeholder="Nhập năm mua xe" th:field="*{yearCar}">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate = "Message is required">
 					<span class="label-input100">Ảnh xe</span>
-					<input class="input100" type="file" name="addess" value="Chọn ảnh">
+					<input class="input100" type="file" name="addess" value="Chọn ảnh" th:field="*{image}">
 					<span class="focus-input100"></span>
 				</div>
 

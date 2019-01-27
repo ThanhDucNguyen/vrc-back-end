@@ -22,10 +22,21 @@ public class VrcController {
         this.vrcService = vrcService;
     }
 
+    @PostMapping(value = "/checkAccount")
+    public Response<UserDTO> checkAccount(@RequestBody UserDTO userDTO) {
+        User user = vrcService.checkUserName(userDTO);
+        if (user == null) {
+            return new Response<>(false, null, "Account chưa đúng, muốn tạo hân");
+        } else {
+            return new Response<>(true, userDTO, "Account đã tồn tại");
+        }
+    }
+
     @PostMapping(value = "/login")
     public Response<UserDTO> login(@RequestBody UserDTO userDTO) {
         userDTO = vrcService.login(userDTO);
         if (userDTO.getId() != null) {
+//            List<BookingDTO> bookingDTOList = vrcService.listTypeCar();
             return new Response<>(true, userDTO, "Successful Login");
         } else {
             return new Response<>(false, null, " User not exits");
