@@ -91,6 +91,12 @@ public class AdminServiceImpl implements AdminService {
         Car car = new Car();
         car.setModel(carDTO.getModel());
         car.setPrice(carDTO.getPrice());
+//        try {
+//            Integer.parseInt();
+//            System.out.println("Way1 - Is a Number");
+//        } catch (Exception e) {
+//            System.out.println("Way1 - Not a Number");
+//        }
         car.setType(carDTO.getType());
         car.setYearCar(carDTO.getYearCar());
         car.setImage(carDTO.getImage());
