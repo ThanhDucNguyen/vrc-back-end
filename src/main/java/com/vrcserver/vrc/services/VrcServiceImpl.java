@@ -76,8 +76,7 @@ public class VrcServiceImpl implements VrcService {
     public void register(UserDTO userDTO) {
         User user = new User();
         user.setUserEmail(userDTO.getUserEmail());
-        user.setUserName(userDTO.getUserName());
-        String a = userDTO.getUserName().replace(" ", "").toLowerCase();
+        String a = userDTO.getUserEmail().replace("@gmail.com", "").toLowerCase();
         user.setPassword(a+""+userDTO.getNumberPass());
         user.setRole(1);
         userRepository.save(user);

@@ -111,7 +111,7 @@
                     <div class="col-lg-6">
                         <div class="card">
                             <div class="card-header"><strong>Company</strong><small> Form</small></div>
-                            <form class="card-body card-block" role="form" th:object="${edit}">
+                            <form class="card-body card-block" th:action="@{/admin-updateCar-process}" method="post" role="form" th:object="${edit}">
                                 <div class="form-group">
                                     <input type="hidden"  class="form-control" th:field="*{id}">
                                 </div>

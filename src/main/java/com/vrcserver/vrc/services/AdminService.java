@@ -1,9 +1,6 @@
 package com.vrcserver.vrc.services;
 
-import com.vrcserver.vrc.dao.models.Booking;
-import com.vrcserver.vrc.dao.models.Car;
-import com.vrcserver.vrc.dao.models.CarOwner;
-import com.vrcserver.vrc.dao.models.TypeCar;
+import com.vrcserver.vrc.dao.models.*;
 import com.vrcserver.vrc.dto.*;
 
 import java.util.List;
@@ -60,4 +57,8 @@ public interface AdminService {
     BookingDTO addBooking(BookingDTO bookingDTO);
 
     TypeCar checkTypeCarName(TypeCarDTO typeCarDTO);
+
+    User findUser(Long id);
+
+    void updateUser(UserDTO userDTO);
 }

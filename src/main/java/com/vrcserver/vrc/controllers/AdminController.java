@@ -1,9 +1,6 @@
 package com.vrcserver.vrc.controllers;
 
-import com.vrcserver.vrc.dao.models.Booking;
-import com.vrcserver.vrc.dao.models.Car;
-import com.vrcserver.vrc.dao.models.CarOwner;
-import com.vrcserver.vrc.dao.models.TypeCar;
+import com.vrcserver.vrc.dao.models.*;
 import com.vrcserver.vrc.dto.*;
 import com.vrcserver.vrc.services.AdminService;
 import org.springframework.web.bind.annotation.*;
@@ -268,7 +265,7 @@ public class AdminController {
     public ModelAndView getBookingProcess(BookingDTO bookingDTO){
         ModelAndView mav = new ModelAndView();
         mav.addObject("add",adminService.addBooking(bookingDTO));
-        mav.setViewName("redirect:/admin-listUser");
+        mav.setViewName("redirect:/admin-listBooking");
         return mav;
     }
     @GetMapping(value = "/admin-detailTypeCar-{id}")
@@ -372,6 +369,48 @@ public class AdminController {
         CarOwner carOwner = adminService.findCarOwner(id);
         mav.addObject("listUser",adminService.getUser());
         mav.addObject("edit",carOwner);
+
+        mav.setViewName("admin/detailCarOwner");
+        return mav;
+    }
+    @GetMapping(value = "/admin-updateUser-{id}")
+    public ModelAndView updateUser(HttpSession session,@PathVariable(value = "id") Long id/*  ở đây chỉ lấy thông tin ra thôi chứ chưa phải cần -> nên nó báo bad Request
+    ,sau đó ra đây để gọi nó ra và modelandview qua jsp*/){
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("user") == null){
+            mav.setViewName("redirect:/admin-login");
+            return mav;
+        }
+
+        //Giờ muốn kiểm tra có lấy đc hay k mình thêm check: về nguyên tắc thì phải lấy được dữ liệu mới  model qua
+        User user = adminService.findUser(id);
+        if(user != null){
+            mav.addObject("edit",user);
+        }
+
+        mav.setViewName("admin/editUser");
+        return mav;
+    }
+
+    @PostMapping(value = "/admin-updateUser-process")//rồi chặn ở dòng đầu-> run->debug server-> nhấnn nút F8 , muốn kết thúc debug thì F10
+    public ModelAndView updateUserProcess( UserDTO userDTO){
+        ModelAndView mav = new ModelAndView();
+        adminService.updateUser(userDTO);
+        mav.setViewName("redirect:/admin-listUser");
+        return mav;
+    }
+    @GetMapping(value = "/admin-detailCarOwner-{id}")
+    public ModelAndView detailUser(HttpSession session,@PathVariable(value = "id") Long id/*  ở đây chỉ lấy thông tin ra thôi chứ chưa phải cần -> nên nó báo bad Request
+    ,sau đó ra đây để gọi nó ra và modelandview qua jsp*/){
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("user") == null){
+            mav.setViewName("redirect:/admin-login");
+            return mav;
+        }
+
+        //Giờ muốn kiểm tra có lấy đc hay k mình thêm check: về nguyên tắc thì phải lấy được dữ liệu mới  model qua
+        User user = adminService.findUser(id);
+        mav.addObject("edit",user);
 
         mav.setViewName("admin/detailCarOwner");
         return mav;
