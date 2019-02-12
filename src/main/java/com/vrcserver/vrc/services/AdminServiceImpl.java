@@ -87,6 +87,26 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public User findUser(Long id) {
+        User user = userRepository.findByUser(id);
+        return user;
+    }
+
+    @Override
+    public void updateUser(UserDTO userDTO) {
+        Optional<User> typeCarOptional = userRepository.findById(userDTO.getId());
+        if (typeCarOptional.isPresent()){
+            User user = typeCarOptional.get();
+            user.setUserName(userDTO.getUserName());
+            user.setPassword(userDTO.getPassword());
+            user.setUserEmail(userDTO.getUserEmail());
+            user.setRole(userDTO.getRole());
+            user.setUserPhone(userDTO.getUserPhone());
+            userRepository.save(user);
+        }
+    }
+
+    @Override
     public CarDTO addCar(CarDTO carDTO) {
         Car car = new Car();
         car.setModel(carDTO.getModel());

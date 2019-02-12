@@ -399,7 +399,7 @@ public class AdminController {
         mav.setViewName("redirect:/admin-listUser");
         return mav;
     }
-    @GetMapping(value = "/admin-detailCarOwner-{id}")
+    @GetMapping(value = "/admin-detailUser-{id}")
     public ModelAndView detailUser(HttpSession session,@PathVariable(value = "id") Long id/*  ở đây chỉ lấy thông tin ra thôi chứ chưa phải cần -> nên nó báo bad Request
     ,sau đó ra đây để gọi nó ra và modelandview qua jsp*/){
         ModelAndView mav = new ModelAndView();
@@ -412,7 +412,7 @@ public class AdminController {
         User user = adminService.findUser(id);
         mav.addObject("edit",user);
 
-        mav.setViewName("admin/detailCarOwner");
+        mav.setViewName("admin/detailUser");
         return mav;
     }
     @GetMapping(value = "/admin-updateCarOwner-{id}")

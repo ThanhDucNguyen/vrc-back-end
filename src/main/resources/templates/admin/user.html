@@ -137,8 +137,8 @@
                                             <td th:text="${list.userEmail}"></td>
                                             <td><a href="#">List Booking</a></td>
                                             <td style="width: 195px;">
-                                                <button type="button" class="btn btn-primary btn-sm">Detail</button>
-                                                <button type="button" class="btn btn-warning btn-sm">Edit</button>
+                                                <a th:href="@{/admin-detailUser-{id}(id=${list.id})}"><button type="button" class="btn btn-primary btn-sm">Detail</button></a>
+                                                <a th:href="@{/admin-updateUser-{id}(id=${list.id})}"><button type="button" class="btn btn-warning btn-sm">Edit</button></a>
                                                 <a th:href="@{/removeUser-{id}-delete(id=${list.id})}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
                                             </td>
                                         </tr>
