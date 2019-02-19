@@ -36,8 +36,6 @@ public interface AdminService {
 
     UserDTO addUser(UserDTO userDTO);
 
-    
-
     void updateTypeCar(TypeCarDTO typeCarDTO);
 
     TypeCar findTypeCar(Long id);

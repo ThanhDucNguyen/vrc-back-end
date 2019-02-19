@@ -172,29 +172,6 @@ public class VrcServiceImpl implements VrcService {
 
     @Override
     public void rentCar(BookingDTO bookingDTO) {
-//        DateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-//
-//        Date currentDate = new Date();
-//        Date date1 = null;
-//        Date date2 = null;
-//        Double money = null;
-//
-//        try {
-//            date1 = simpleDateFormat.parse(bookingDTO.getRentalDay());
-//            date2 = simpleDateFormat.parse(bookingDTO.getReturnDay());
-//
-//            long getDiff = date2.getTime() - date1.getTime();
-//            long getDaysDiff = getDiff / (24 * 60 * 60 * 1000);
-//
-//            Optional<Car> carOptional = carRepository.findById(bookingDTO.getCar().getId());
-//            if (carOptional.isPresent()) {
-//                Car car = carOptional.get();
-//                money = car.getPrice().doubleValue() * getDaysDiff;
-//            }
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         Booking booking = new Booking();
         booking.setPay(bookingDTO.getPay());
         booking.setPrice(bookingDTO.getPrice());

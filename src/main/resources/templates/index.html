@@ -20,6 +20,18 @@
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+
+    <link rel="stylesheet" href="vendors/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
     <!-- Plugin CSS -->
     <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
 
@@ -60,8 +72,7 @@
           <div class="col-lg-7 my-auto">
             <div class="header-content mx-auto">
               <h1 class="mb-5"><b>ỨNG DỤNG THUÊ XE</b><br> <span style="font-size: 30px;font-family: arial;font-weight: inherit;">Bạn muốn trở thành đối tác của chúng tôi!</span></h1>
-              <a th:href="@{/them-xe}" class="btn btn-outline btn-xl js-scroll-trigger"><b>Đăng ký cho thuê xe</b></a><br>
-              <a style="margin-top: 20px" href="#download" class="btn btn-outline btn-xl js-scroll-trigger"><b>Quản lý thuê xe</b></a>
+              <a href="#download" class="btn btn-outline btn-xl js-scroll-trigger"><b>TẢI ỨNG DỤNG</b></a><br>
             </div>
           </div>
           <div class="col-lg-5 my-auto">
@@ -124,34 +135,19 @@
           <div class="col-lg-8 my-auto">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-screen-smartphone text-primary"></i>
-                    <h3>Device Mockups</h3>
-                    <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
-                  </div>
-                </div>
+
                 <div class="col-lg-6">
                   <div class="feature-item">
                     <i class="icon-camera text-primary"></i>
-                    <h3>Flexible Use</h3>
-                    <p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
+                    <h3>Thuê xe nhanh chóng</h3>
+                    <p class="text-muted">Bạn có thể thuê xe nhanh chóng và đơn giản trên ứng dụng.</p>
                   </div>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-lg-6">
                   <div class="feature-item">
                     <i class="icon-present text-primary"></i>
-                    <h3>Free to Use</h3>
-                    <p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-lock-open text-primary"></i>
-                    <h3>Open Source</h3>
-                    <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
+                    <h3>Đăng ký cho thuê</h3>
+                    <p class="text-muted">Bạn có thể đăng ký cho thuê xe hoàn toàn đơn giản và miễn phí trên ứng dụng.</p>
                   </div>
                 </div>
               </div>
@@ -161,40 +157,26 @@
       </div>
     </section>
 
-    <section class="cta">
-      <div class="cta-content">
-        <div class="container">
-          <h2>Stop waiting.<br>Start building.</h2>
-          <a href="#contact" class="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
+    <form class="card-body card-block" >
+      <small style="color: #721c24;"
+             class="error" >
+      </small>
+      <div class="has-success form-group" >
+        <label for="inputIsValid" class=" form-control-label">Name type car</label>
+        <input type="text" id="inputIsValid" class="is-valid form-control-success form-control" placeholder="-- Example: Audi">
+      </div>
+      <div class="row form-group">
+        <div class="col col-md-3">
+          <label for="file-input" class=" form-control-label">Image type car</label>
+        </div>
+        <div class="col-12 col-md-9">
+          <input type="file" id="file-input" name="file-input" class="form-control-file" >
         </div>
       </div>
-      <div class="overlay"></div>
-    </section>
-
-    <section class="contact bg-primary" id="contact">
-      <div class="container">
-        <h2>We
-          <i class="fas fa-heart"></i>
-          new friends!</h2>
-        <ul class="list-inline list-social">
-          <li class="list-inline-item social-twitter">
-            <a href="#">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-facebook">
-            <a href="#">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-google-plus">
-            <a href="#">
-              <i class="fab fa-google-plus-g"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
+      <button type="submit" class="btn btn-primary btn-sm">
+        <i class="fa fa-dot-circle-o"></i> Submit
+      </button>
+    </form>
 
     <footer>
       <div class="container">
@@ -222,6 +204,15 @@
 
     <!-- Custom scripts for this template -->
     <script src="js/new-age.min.js"></script>
+
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/popper.js/dist/umd/popper.min.js"></script>
+
+    <script src="vendors/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="vendors/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
   </body>
 
