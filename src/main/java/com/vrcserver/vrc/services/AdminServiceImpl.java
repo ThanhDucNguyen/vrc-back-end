@@ -45,7 +45,6 @@ public class AdminServiceImpl implements AdminService {
             TypeCarDTO typeCarDTO = new TypeCarDTO();
             typeCarDTO.setId(typeCar.getId());
             typeCarDTO.setName(typeCar.getName());
-
             typeCarDTOS.add(typeCarDTO);
         }
         return typeCarDTOS;
