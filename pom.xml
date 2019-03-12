@@ -9,7 +9,7 @@
     <packaging>war</packaging>
 
     <name>vrc</name>
-    <description>Demo project for Spring Boota</description>
+    <description>Demo project for Spring Bootasads</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
